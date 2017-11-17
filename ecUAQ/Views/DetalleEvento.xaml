@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ecUAQ.Views.DetalleEvento">
+	<ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <ListView
+                    x:Name="DetalleDelEvento" ItemsSource="{Binding DetalleDelEvento}" ItemSelected="evento_ItemSelected" VerticalOptions="FillAndExpand" HasUnevenRows="True" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <!--<ImageCell Text="{Binding titulo}" Detail="{Binding descripcion}" ImageSource="{Binding url_portada}"></ImageCell>-->
+                            <ViewCell>
+                                <ViewCell.View>
+                                <Grid>
+                                      <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                                <ContentView Padding="0,0,0,10" VerticalOptions="FillAndExpand">
+                                                    <Image Source="{Binding url_portada}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="200"/>
+                                                </ContentView>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        
+                                        <ScrollView Grid.Row="1">
+                                            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
+                                                <Label Text="{Binding titulo}" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Arial"></Label>
+                                                <Label Text="{Binding descripcion}" FontSize="12" HorizontalOptions="Center" FontFamily="Arial"></Label>
+                                                <Label Text="{Binding organizador}" FontSize="12" HorizontalOptions="Center" FontFamily="Arial"></Label>
+                                                <Label Text="{Binding lugarEvento}" FontSize="12" HorizontalOptions="Center" FontFamily="Arial"></Label>
+                                                <Label Text="{Binding notas}" FontSize="12" HorizontalOptions="Center" FontFamily="Arial"></Label>
+                                                <Label Text="{Binding fechaInicio}" FontSize="10" HorizontalOptions="Center" FontFamily="Arial"></Label>
+                                                <Label Text="{Binding fechaFin}" FontSize="10" HorizontalOptions="Center" FontFamily="Arial"></Label>
+                                            </StackLayout>
+                                        </ScrollView>
+                                </Grid>
+                              </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+       </ScrollView>
+	</ContentPage.Content>
+</ContentPage>

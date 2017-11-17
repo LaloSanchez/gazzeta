@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ecUAQ.Views.GaleriaView">
+	<ContentPage.Content>
+        <ListView HeightRequest="8000" x:Name="ListaGaleria" ItemsSource="{Binding ListaGaleria}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout VerticalOptions="FillAndExpand"
+                         Orientation="Vertical"
+                         Padding="30,30,0,30"
+                         HeightRequest="8000"
+                         Spacing="5">
+                            <Image Source="{Binding url_imagen}"
+                                 HorizontalOptions = "FillAndExpand"
+                                 HeightRequest="200"
+                                 Aspect = "AspectFill"
+                                 VerticalOptions="Center" />
+                            <Label Text="{Binding titulo}"
+                                 FontSize="20"
+                                 FontAttributes="Bold"
+                                 VerticalOptions="Center"
+                                 TextColor="Black"/>
+                            <Label Text="{Binding descripcion}"
+                                 FontSize="10"
+                                 FontAttributes="Bold"
+                                 VerticalOptions="Center"
+                                 TextColor="Black"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+	</ContentPage.Content>
+</ContentPage>
