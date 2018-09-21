@@ -4,4 +4,12 @@
     <ResultingAbi></ResultingAbi>
     <SdkVersion>22</SdkVersion>
   </Device>
+  <Device id="emulator-5554">
+    <ResultingAbi></ResultingAbi>
+    <SdkVersion>25</SdkVersion>
+  </Device>
+  <Device id="WPG0217A20003575">
+    <ResultingAbi></ResultingAbi>
+    <SdkVersion>26</SdkVersion>
+  </Device>
 </Devices>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ecUAQ.Views.GazzetasAnteriores">
+	<ContentPage.Content>
+        <ListView HeightRequest="80" RowHeight="250" x:Name="ListaAnteriores" ItemsSource="{Binding ListaAnteriores}">
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout VerticalOptions="FillAndExpand"
+                                 Orientation="Vertical"
+                                 Padding="30,10,30,0"
+                                 >
+                            <Label Text="{Binding infor}"
+                                 FontSize="8"
+                                 FontAttributes="Bold"
+                                 VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                 TextColor="Black"/>
+                            <Image Source="{Binding url_imagen}"
+                                 HorizontalOptions = "FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 WidthRequest="80"
+                                 HeightRequest="80"
+                                 Aspect = "AspectFit" />
+                            <Label Text="{Binding titulo}"
+                                 FontSize="15"
+                                 FontAttributes="Bold"
+                                 VerticalOptions="Center"
+                                HorizontalOptions="CenterAndExpand"
+                                 TextColor="Black"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+	</ContentPage.Content>
+</ContentPage>

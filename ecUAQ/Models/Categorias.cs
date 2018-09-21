@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ecUAQ.Models
 {
@@ -12,6 +13,6 @@ namespace ecUAQ.Models
         public string fechaRegistro { get; set; }
     }
     public class ListCategorias{
-        public List<Categorias> listaCategos { get; set; }
+        public ObservableCollection<Categorias> listaCategos { get; set; }
     }
 }

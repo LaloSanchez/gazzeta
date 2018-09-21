@@ -7,10 +7,11 @@ namespace ecUAQ
 {
     public class RestClient
     {
-        //http://189.211.201.181:75/GazzetaWebservice2/api/tblgaleria
         public async Task<T> Get<T>(string url,string nombre){
             try{
                 HttpClient cliente = new HttpClient();
+                cliente.Timeout = TimeSpan.FromSeconds(10000);
+                Debug.Write(url);
                 var respuesta = await cliente.GetAsync(url);
                 Debug.Write(url);
                 if(respuesta.StatusCode == System.Net.HttpStatusCode.OK){

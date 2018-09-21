@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Xamarin.Forms;
 
@@ -9,7 +10,6 @@ namespace ecUAQ.Views
     {
         public SingleArticleView(ecUAQ.Models.Noticias Noticia)
         {
-
             InitializeComponent();
             cargarNoticia(Noticia);
         }
@@ -17,6 +17,7 @@ namespace ecUAQ.Views
         public void cargarNoticia(ecUAQ.Models.Noticias Noticia){
             try
             {
+                Debug.WriteLine(Noticia.url_imagen);
                 List<ecUAQ.Models.Noticias> eventos = new List<ecUAQ.Models.Noticias>{
                     new ecUAQ.Models.Noticias {
                         titulo =Noticia.titulo,

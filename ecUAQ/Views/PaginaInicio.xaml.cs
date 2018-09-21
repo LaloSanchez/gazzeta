@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using ecUAQ.Models;
 using Xamarin.Forms;
 
 namespace ecUAQ.Views
 {
-    public partial class PaginaInicio : CarouselPage
+    public partial class PaginaInicio : TabbedPage
     {
+        Config config = new Config();
         public PaginaInicio()
         {
             InitializeComponent();
@@ -19,117 +21,101 @@ namespace ecUAQ.Views
             //List<ContentPage> categorias = new List<ContentPage> { };
             Device.BeginInvokeOnMainThread(async () =>
             {
-                RestClient cliente = new RestClient();
-
-                var categories = await cliente.Get<ListCategorias>("http://189.211.201.181:75/GazzetaWebservice2/api/tblcategorias", "listaCategos");
-                if (categories != null)
-                {
-                    foreach (var catego in categories.listaCategos)
+                try{
+                    RestClient cliente = new RestClient();
+                    
+                var categories = await cliente.Get<ListCategorias>(config.ipPrueba +"GazzetaWebservice2/api/tblcategorias", "listaCategos");                    if (categories != null)
                     {
-
-                        Device.BeginInvokeOnMainThread(async () =>
+                        if (categories != null)
                         {
-                            RestClient cliente2 = new RestClient();
-
-                            var noticias = await cliente.Get<ListNoticias>("http://189.211.201.181:75/GazzetaWebservice2/api/tblnoticias/categoria/" + catego.cveCategoria, "listaNotic");
-                            if (noticias != null)
+                            foreach (var catego in categories.listaCategos)
                             {
-                                ListView listaNot = new ListView { };
-                                Debug.WriteLine(noticias.listaNotic[0].titulo);
-                                List<StackLayout> item = new List<StackLayout>();
-                                foreach (var noticiaCatego in noticias.listaNotic)
-                                {
 
-                                    //empieza template noticias
-                                    var titleLabel = new Label()
+                               // Device.BeginInvokeOnMainThread(async () =>
+                                //{
+                                    RestClient cliente2 = new RestClient();
+
+                                var noticias = await cliente.Get<ListNoticias>(config.ipPrueba +"GazzetaWebservice2/api/tblnoticias/categoria/" + catego.cveCategoria, "listaNotic");
+                                    if (noticias != null)
                                     {
-                                        Text = "hola",
-                                        FontFamily = "HelveticaNeue-Medium",
-                                        FontSize = 18,
-                                        TextColor = Color.Black
-                                    };
-                                    titleLabel.FontSize = 15;
-
-                                    var discriptionLabel = new Label()
-                                    {
-                                        Text = "hola2",
-                                        FontAttributes = FontAttributes.Bold,
-                                        FontSize = 11,
-                                        TextColor = Color.FromHex("#666")
-                                    };
-                                    //discriptionLabel.Text.Substring(0, 10);
+                                        if (noticias.listaNotic.Count > 0)
+                                        {
 
 
-                                    var ImagenPrincipal = new Image()
-                                    {
-                                        Source = noticiaCatego.url_imagen,
-                                        AnchorX = 0,
-                                        HeightRequest = 100,
-                                        WidthRequest = 100,
-                                        VerticalOptions = LayoutOptions.CenterAndExpand
-                                    };
-
-                                    var textLayout = new StackLayout
-                                    {
-                                        Orientation = StackOrientation.Vertical,
-                                        Children = { titleLabel, discriptionLabel }
-                                    };
-
-                                    var generalStack = new StackLayout()
-                                    {
-                                        Spacing = 3,
-                                        Orientation = StackOrientation.Horizontal,
-                                        Children = { ImagenPrincipal, textLayout }
-                                    };
-
-
-                                    var cellLayout = new StackLayout
-                                    {
-                                        Spacing = 0,
-                                        Padding = new Thickness(10, 5, 10, 5),
-                                        Orientation = StackOrientation.Horizontal,
-                                        HorizontalOptions = LayoutOptions.FillAndExpand,
-                                        Children = { generalStack }
-                                    };
-                                    Debug.WriteLine(textLayout);
-                                    item.Add(textLayout);
-                                    //termina template noticias
-                                }
-                                listaNot.ItemsSource = item;
-                                var blueContentPage = new ContentPage
-                                {
-                                    Content = new StackLayout
-                                    {
-                                        Children = {
-                                             new Label()
+                                            ListView listaNot = new ListView { RowHeight = 100 };
+                                            
+                                            Debug.WriteLine(noticias.listaNotic[0].titulo);
+                                        ObservableCollection<Noticias> item = new ObservableCollection<Noticias>();
+                                            foreach (var noticiaCatego in noticias.listaNotic)
+                                            {
+                                                Noticias notic = new Noticias
                                                 {
-                                                Text = catego.descCategoria,
-                                                    FontFamily = "HelveticaNeue-Medium",
-                                                    FontSize = 18,
-                                                    TextColor = Color.Black
-                                                },
-                                            listaNot
+                                                    titulo = noticiaCatego.titulo,
+                                                    contenido = noticiaCatego.contenido,
+                                                    url_imagen = config.ipPrueba + noticiaCatego.url_imagen,
+                                                };
+                                                item.Add(notic);
+                                            }
+                                            
+                                            listaNot.ItemsSource = item;
+                                            listaNot.ItemTemplate = new DataTemplate(typeof(listTemplate));
+                                            listaNot.ItemSelected += async (sender, e) =>
+                                            {
+        										if(e.SelectedItem == null)
+        											return;
+                                                var selectedObject = e.SelectedItem as ecUAQ.Models.Noticias;
+                                                var SingleArticleView = new SingleArticleView(selectedObject);
+
+                                                var newPage = new ContentPage();
+                                                await Navigation.PushAsync(SingleArticleView);
+                                        listaNot.SelectedItem = null;
+                                            };
+                                            var blueContentPage = new ContentPage
+                                            {
+                                                Content = new StackLayout
+                                                {
+                                                    HeightRequest = 100f,
+                                                    Children = {
+
+                                                        listaNot
+                                                }
+                                                }
+                                            };
+                                            blueContentPage.Title = catego.descCategoria;
+                                            Children.Add(blueContentPage);
                                         }
                                     }
-                                };
-                                Children.Add(blueContentPage);
+                               // });
 
-                                //listaNot.ItemSelected += async (sender, e) =>
-                                //{
-                                //    var selectedObject = e.SelectedItem as ecUAQ.Models.Noticias;
-                                //    var SingleArticleView = new SingleArticleView(selectedObject);
-                                //    //var WebViewPage = new WebViewPage("General Articles",string.Format("http:{0}",selectedObject.websiteLink));
-                                //    var newPage = new ContentPage();
-                                //    await Navigation.PushAsync(SingleArticleView);
 
-                                //};
+
                             }
-                        });
-
-
-
+                        }
                     }
-                }
+            }catch(Exception ex){
+                ListView listaNot = new ListView { RowHeight = 100 };
+                ObservableCollection<Noticias> item = new ObservableCollection<Noticias>();
+                Noticias notic = new Noticias
+                {
+                    titulo = "Noticias no disponibles",
+                };
+                item.Add(notic);
+                listaNot.ItemsSource = item;
+                    listaNot.ItemTemplate = new DataTemplate(typeof(listTemplate));
+                var blueContentPage = new ContentPage
+                {
+                    Content = new StackLayout
+                    {
+                        HeightRequest = 100f,
+                        Children = {
+
+                                                    listaNot
+                                            }
+                    }
+                };
+                Children.Add(blueContentPage);
+                Debug.WriteLine(ex);
+            }
             });
     }
 }

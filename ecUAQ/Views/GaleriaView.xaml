@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ecUAQ.Views.GaleriaView">
 	<ContentPage.Content>
-        <ListView HeightRequest="8000" x:Name="ListaGaleria" ItemsSource="{Binding ListaGaleria}">
-            <ListView.ItemTemplate>
+        <ListView HeightRequest="80" RowHeight="300" x:Name="ListaGaleria" ItemsSource="{Binding ListaGaleria}">
+            <ListView.ItemTemplate >
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout VerticalOptions="FillAndExpand"
-                         Orientation="Vertical"
-                         Padding="30,30,0,30"
-                         HeightRequest="8000"
-                         Spacing="5">
-                            <Image Source="{Binding url_imagen}"
-                                 HorizontalOptions = "FillAndExpand"
-                                 HeightRequest="200"
-                                 Aspect = "AspectFill"
-                                 VerticalOptions="Center" />
+                                 Orientation="Vertical"
+                                 Padding="30,10,30,0"
+                                 >
                             <Label Text="{Binding titulo}"
-                                 FontSize="20"
+                                 FontSize="18"
                                  FontAttributes="Bold"
                                  VerticalOptions="Center"
                                  TextColor="Black"/>
+                            <Image Source="{Binding url_imagen}"
+                                 HorizontalOptions = "FillAndExpand"
+                                 WidthRequest="100"
+                                 HeightRequest="180"
+                                 Aspect = "AspectFill"
+                                 VerticalOptions="Center" />
                             <Label Text="{Binding descripcion}"
                                  FontSize="10"
                                  FontAttributes="Bold"

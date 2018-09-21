@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ecUAQ.Models;
 using Xamarin.Forms;
 
@@ -14,7 +15,7 @@ namespace ecUAQ.Views
         }
 
         void cargaDetalleEvento(Eventos evento){
-            List<Eventos> eventos = new List<Eventos>{
+            ObservableCollection<Eventos> eventos = new ObservableCollection<Eventos>{
                 new Eventos { titulo =evento.titulo, 
                     descripcion = evento.descripcion, 
                     url_portada = evento.url_portada, 

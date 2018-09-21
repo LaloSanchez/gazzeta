@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ecUAQ.Views.MenuPrincipal">
     <MasterDetailPage.Master>
-        <ContentPage
-            Title="Cultura UAQ">
-            <ListView Opacity="0.5"
-                x:Name="ListaMenu" ItemSelected="ListaMenu_ItemSelected">
+        <ContentPage Icon="menu.png" Title=" " >
+            <ListView HasUnevenRows="true" Header=""
+                x:Name="ListaMenu" ItemSelected="ListaMenu_ItemSelected" RowHeight="60">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Image Source="imgGazzeta.png" VerticalOptions="Center" HeightRequest="64"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout VerticalOptions="FillAndExpand"
                              Orientation="Horizontal"
                              Padding="5,5,0,5"
-                             Spacing="5">
+                             Spacing="5"
+                                Opacity="0.7">
                                 <Image Source="{Binding icono}"
-                                 WidthRequest="50"
-                                 HeightRequest="50"
+                                 WidthRequest="25"
+                                 HeightRequest="25"
                                  VerticalOptions="Center" />
                                 <Label Text="{Binding titulo}"
-                                 FontSize="12"
+                                 FontSize="13"
                                  VerticalOptions="Center"
                                  TextColor="Black"/>
                             </StackLayout>

@@ -10,12 +10,14 @@ namespace ecUAQ.Services
 {
     public class EventosDataStore: InterfaceEventosDataStore<Eventos>
     {
+        Config config = new Config();
         HttpClient cliente;//Se inicializa un cliente de donde obtener los datos
-        static string url = "http://189.211.201.181:75/GazzetaWebservice2/";//url
+
         IEnumerable<Eventos> eventos;//Crea una coleccion (EINumerable) de tipo Eventos
 
         public EventosDataStore()
         {
+            string url = config.ipPrueba + "GazzetaWebservice2/";//url
             cliente = new HttpClient();//Se crea la instancia del cliente
             cliente.BaseAddress = new Uri(url);//Se asigna la url
             eventos = new List<Eventos>();

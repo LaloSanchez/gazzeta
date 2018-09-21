@@ -15,10 +15,8 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
                                         <ScrollView Grid.Row="1">
-                                            <StackLayout>
-                                                <Image Source="{Binding url_imagen}"></Image>
-                                            </StackLayout>
-                                            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
+                                            <StackLayout Orientation="Vertical" Padding="16,10,16,40" Spacing="10">
+                                                <Image Source="{Binding url_imagen}" HeightRequest="150" HorizontalOptions="FillAndExpand" WidthRequest="60" VerticalOptions="FillAndExpand" Aspect="Fill"></Image>
                                                 <Label Text="{Binding titulo}" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Arial"></Label>
                                                 <Label Text="{Binding contenido}" FontSize="12" HorizontalOptions="Center" FontFamily="Arial"></Label>
                                             </StackLayout>

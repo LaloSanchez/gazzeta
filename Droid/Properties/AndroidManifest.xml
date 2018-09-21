@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.andradescompany.ecUAQ">
-	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="ecUAQ" android:icon="@drawable/logo_proyecto"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.andradescompany.gazzetauaq">
+	<uses-sdk android:minSdkVersion="26" android:targetSdkVersion="26" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<application android:icon="@drawable/iconouaq" android:label="Gazzeta UAQ"></application>
 </manifest>

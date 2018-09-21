@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ecUAQ.Models;
 using Xamarin.Forms;
 
@@ -15,7 +16,7 @@ namespace ecUAQ.Views
 
         void cargaProximosEventos()
         {
-            List<Eventos> eventos = new List<Eventos>{
+            ObservableCollection<Eventos> eventos = new ObservableCollection<Eventos>{
                 new Eventos { idEvento = 1, titulo = "TORNEO DE PITARRA", 
                     descripcion = "EN LA SEMANA DE IDENTIDAD DE LA F.C.A. ", 
                     organizador = "Club Universitario Deporte Autóctono UAQ", 

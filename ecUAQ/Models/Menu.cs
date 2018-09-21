@@ -10,8 +10,8 @@ namespace ecUAQ.Models
         {
             image = new Image
             {
-                HeightRequest = 5,
-                WidthRequest = 5,
+                HeightRequest = 2,
+                WidthRequest = 2,
             };
 
             image.Opacity = 0.5;

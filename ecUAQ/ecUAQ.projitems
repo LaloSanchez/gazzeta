@@ -69,6 +69,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\SingleArticleView.xaml.cs">
       <DependentUpon>SingleArticleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\listTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />

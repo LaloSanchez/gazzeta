@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ecUAQ.Models
 {
@@ -20,6 +21,6 @@ namespace ecUAQ.Models
     }
     public class ListaGale
     {
-        public List<Galeria> listaGaleria { get; set; }
+        public ObservableCollection<Galeria> listaGaleria { get; set; }
     }
 }
